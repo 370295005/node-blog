@@ -10,6 +10,6 @@ RUN cd /usr/src/node-blog/
 
 RUN npm i
 
-COPY ./dist /usr/src/nodejs/
+COPY . /usr/src/node-blog/
 
 RUN npm run build

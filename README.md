@@ -16,3 +16,41 @@ alter user 'root'@'%' identified with mysql_native_password by '123456';
 flush privileges;
 ```
 
+### REDIS
+
+开启服务： redis-server
+
+进入命令行: redis-cli
+
+退出: shutdown 
+
+=> exit
+
+重启: shutdown
+
+=>exit
+
+redis-server redis.conf  以redis.conf为配置重新启动服务
+
+
+
+进入redis-cli后
+
+```
+// 设置键值对
+set key value
+// 获取键值对
+get key
+// 删除键值对
+del key
+// 显示key
+keys key (*) 星号则显示全部
+```
+
+### NGINX
+
+```
+sudo nginx -t // 测试配置文件是否正确
+sudo nginx -s reload // 重新加载配置文件并使其生效不会重启不影响服务
+```
+

@@ -1,4 +1,5 @@
 const env = process.env.NODE_ENV
+const LOCAL_HOST = "localhost"
 const HOST = "203.195.212.95"
 const PORT = "3306"
 const USER = "root"
@@ -15,6 +16,7 @@ const MYSQL_CONFIG = {
 if (env !== "prodction") {
   MYSQL_CONFIG.database = TEST_DATABASE
 } else {
+  MYSQL_CONFIG.host = LOCAL_HOST
   MYSQL_CONFIG.database = DATABASE
 }
 

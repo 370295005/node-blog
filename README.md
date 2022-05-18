@@ -69,5 +69,11 @@ sudo service docker start // 启动docker
 /user/login POST
 注册
 /user/register POST
+上传头图
+/upload POST
+新建文章
+/create POST
+编辑文章
+/edit POST
 ```
 

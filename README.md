@@ -54,3 +54,9 @@ sudo nginx -t // 测试配置文件是否正确
 sudo nginx -s reload // 重新加载配置文件并使其生效不会重启不影响服务
 ```
 
+### DOCKER
+
+```
+sudo service docker start // 启动docker
+```
+

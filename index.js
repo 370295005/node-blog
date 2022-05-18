@@ -2,6 +2,7 @@ const handleBlogFn = require("./route/blog")
 const handleUserFn = require("./route/user")
 const { getCookieExpire } = require("./utils/cookie")
 const { set, get } = require("./redis")
+const { access } = require("./utils/log")
 const http = require("http")
 const qs = require("querystring")
 const PORT = 8000
@@ -37,6 +38,12 @@ const server = http.createServer(async (req, res) => {
   const { url } = req
   const path = url.split("?")[0]
   const query = url.split("?")[1]
+
+  // 写日志
+  access(
+    `${req.method} -- ${url} -- ${req.headers["user-agent"]} -- ${Date.now()}`
+  )
+
   let needSetCookie = false
   res.setHeader("Content-type", "application/json")
   req.query = qs.parse(query)

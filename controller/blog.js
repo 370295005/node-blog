@@ -1,13 +1,15 @@
 const { exec, escape } = require("../database")
-
+const xss = require("xss")
 // 获取博客列表
 const getList = (author, keyword) => {
   // author且keyword没有值的时候会报错,加上 1=1
   let sql = `select * from blogs where 1=1 `
   if (author) {
+    author = xss(author)
     sql += `and author=${escape(author)}`
   }
   if (keyword) {
+    keyword = xss(keyword)
     sql += `and title like ${escape(`%${keyword}%`)} `
   }
   sql += "order by createtime desc;"
@@ -15,6 +17,7 @@ const getList = (author, keyword) => {
 }
 // 获取博客详情
 const getDetail = async id => {
+  id = xss(id)
   const sql = `select * from blogs where id=${escape(id)};`
   const rows = await exec(sql)
   return rows[0]
@@ -22,7 +25,11 @@ const getDetail = async id => {
 
 // 新建博客
 const newBlog = async (blogData = {}) => {
-  const { title, content, author } = blogData
+  let { title, content, author } = blogData
+  // 对尖括号等敏感符号进行转义
+  title = xss(title)
+  content = xss(content)
+  author = xss(author)
   const createTime = Date.now()
   const sql = `insert into blogs (title,content,author,createtime) values(${escape(
     title

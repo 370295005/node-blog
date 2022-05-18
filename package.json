@@ -14,7 +14,8 @@
   "dependencies": {
     "loadsh": "^0.0.4",
     "mysql": "^2.18.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "xss": "^1.0.11"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

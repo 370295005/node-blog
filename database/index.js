@@ -22,4 +22,4 @@ function closeConnect() {
   connect.end()
 }
 
-module.exports = { exec, closeConnect }
+module.exports = { exec, closeConnect, escape: mysql.escape }

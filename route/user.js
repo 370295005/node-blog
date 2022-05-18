@@ -7,7 +7,7 @@ const handleFn = async (req, res) => {
   if (method === "POST" && path === "/api/user/login") {
     const { username, password } = req.body
     const data = await login(username, password)
-    if (data.username) {
+    if (data?.username) {
       req.session.username = data.username
       req.session.realname = data.realname
       console.log(data)

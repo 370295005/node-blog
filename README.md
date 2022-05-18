@@ -60,3 +60,14 @@ sudo nginx -s reload // 重新加载配置文件并使其生效不会重启不�
 sudo service docker start // 启动docker
 ```
 
+### API
+
+```
+推荐文章，首页，默认10个
+/blog/recommend GET
+登录
+/user/login POST
+注册
+/user/register POST
+```
+

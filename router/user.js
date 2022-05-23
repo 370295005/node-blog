@@ -1,21 +1,12 @@
-const express = require("express")
-const router = express.Router()
-const { login } = require("../controller/user")
-const { SuccessModel, ErrorModel } = require("../model/resModel")
+const router = require("koa-router")()
+router.prefix("/user")
 
-router.post("/login", async (req, res, next) => {
-  const { username, password } = req.body
-  const result = login(username, password)
-  const data = await result
-  if (data?.username || "") {
-    req.session.username = data.username
-    req.session.realname = data.realname
-    res.json(
-      new SuccessModel({ username: data.username, realname: data.realname })
-    )
-    return
+router.post("/login", async (ctx, next) => {
+  const { username, password } = ctx.request.body
+  ctx.body = {
+    username,
+    password
   }
-  res.json(new ErrorModel())
 })
 
 module.exports = router

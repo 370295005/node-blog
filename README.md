@@ -37,6 +37,8 @@ redis-server redis.conf  以redis.conf为配置重新启动服务
 进入redis-cli后
 
 ```
+// 验证密码
+auth 123456
 // 设置键值对
 set key value
 // 获取键值对

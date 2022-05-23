@@ -1,5 +1,5 @@
 const mysql = require("mysql")
-const config = require("../config/database")
+const config = require("../config/mysql")
 
 // 连接对象
 const connect = mysql.createConnection(config)

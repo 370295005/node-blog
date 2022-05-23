@@ -2,8 +2,8 @@ const fs = require("fs")
 const path = require("path")
 
 const createWriteStream = fileName => {
-  const fullFilaName = path.join(__dirname, "../", "log", fileName)
-  const writeStream = fs.createWriteStream(fullFilaName, {
+  const fullFileName = path.join(__dirname, "../", "log", fileName)
+  const writeStream = fs.createWriteStream(fullFileName, {
     flags: "a"
   })
   return writeStream
@@ -20,5 +20,6 @@ const writeLog = (writeStream, log) => {
 }
 
 module.exports = {
-  access
+  access,
+  accessWriteStream
 }

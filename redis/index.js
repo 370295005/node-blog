@@ -8,15 +8,13 @@ redisClient.auth(PASSWORD, () => {
 })
 
 redisClient.on("error", err => {
-  console.error(err)
+  console.error("redis错误", err)
 })
-
 function set(key, value) {
-  console.log(key, value)
   if (typeof value === "object") {
-    val = JSON.stringify(value)
+    value = JSON.stringify(value)
   }
-  redisClient.set(key, val, redis.print)
+  redisClient.set(key, value, redis.print)
 }
 
 function get(key) {
@@ -35,4 +33,4 @@ function get(key) {
   })
 }
 
-module.exports = { set, get }
+module.exports = { redisClient }

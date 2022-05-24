@@ -1,7 +1,7 @@
 const { exec, escape } = require("../mysql")
 const xss = require("xss")
 // 获取博客列表
-const getList = (author, keyword) => {
+const getList = async (author, keyword) => {
   // author且keyword没有值的时候会报错,加上 1=1
   let sql = `select * from blogs where 1=1 `
   if (author) {
@@ -13,7 +13,8 @@ const getList = (author, keyword) => {
     sql += `and title like ${escape(`%${keyword}%`)} `
   }
   sql += "order by createtime desc;"
-  return exec(sql)
+  const res = await exec(sql)
+  return res
 }
 // 获取博客详情
 const getDetail = async id => {

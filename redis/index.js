@@ -2,6 +2,7 @@ const redis = require("redis")
 const { PORT, HOST, PASSWORD } = require("../config/redis")
 
 const redisClient = redis.createClient(PORT, HOST)
+const redisConfig = { host: HOST, port: PORT, password: PASSWORD }
 
 redisClient.auth(PASSWORD, () => {
   console.log("连接至redis")
@@ -33,4 +34,4 @@ function get(key) {
   })
 }
 
-module.exports = { redisClient }
+module.exports = { redisClient, redisConfig }

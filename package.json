@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": " cross-env NODE_ENV=development PORT=8000 nodemon --inspect=8001 ./bin/www.js",
-    "prd": "cross-env NODE_ENV=production PORT=8080 pm2 start pm2.config.json",
+    "prd": "cross-env NODE_ENV=production PORT=8081 pm2 start pm2.config.json",
     "restart": "pm2 restart node-blog",
     "stop": "pm2 stop node-blog",
     "log": "pm2 log node-blog",

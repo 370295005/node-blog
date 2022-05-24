@@ -1,2 +1,9 @@
 [0mGET /blog/detail/1 [32m200[0m 34.619 ms - 145[0m
 [0mGET /blog/list [32m200[0m 47.220 ms - 309[0m
+[0mGET /blog/list [32m200[0m 28.631 ms - 309[0m
+[0mGET /favicon.ico [33m404[0m 11.487 ms - 9[0m
+[0mGET /blog/list [0m-[0m - ms - -[0m
+[0mGET /blog/list [32m200[0m 26.420 ms - 309[0m
+[0mGET /blog/detail/1 [32m200[0m 22.473 ms - 145[0m
+[0mGET /blog/detail/1 [32m200[0m 21.505 ms - 145[0m
+[0mGET /aaa [33m404[0m 9.956 ms - 9[0m

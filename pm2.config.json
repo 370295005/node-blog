@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "name": "node-blog",
+    "script": "bin/www.js",
+    "watch": false,
+    "ignore_watch": ["node0_modules", "logs"],
+    "error_file": "log/error.log",
+    "out_file": "log/event.log",
+    "log_date_format": "YYYY-MM-DD HH:mm:ss"
+  }
+}

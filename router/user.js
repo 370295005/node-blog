@@ -9,9 +9,9 @@ router.post("/login", async (req, res, next) => {
   const data = await result
   if (data?.username || "") {
     req.session.username = data.username
-    req.session.realname = data.realname
+    req.session.nickname = data.nickname
     res.json(
-      new SuccessModel({ username: data.username, realname: data.realname })
+      new SuccessModel({ username: data.username, nickname: data.nickname })
     )
     return
   }

@@ -1,1 +1,8 @@
 ::1 - - [23/May/2022:05:56:31 +0000] "GET /blog/detail?id=2 HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36"
+[0mPOST /user/login [32m200[0m 41.957 ms - 58[0m
+[0mPOST /user/login [0m-[0m - ms - -[0m
+[0mPOST /user/login [32m200[0m 55.788 ms - 58[0m
+[0mPOST /user/login [32m200[0m 10.552 ms - 58[0m
+[0mPOST /user/login [32m200[0m 11.019 ms - 58[0m
+[0mPOST /user/login [32m200[0m 24.109 ms - 58[0m
+[0mPOST /user/login [32m200[0m 11.769 ms - 58[0m

@@ -4,6 +4,7 @@ const loginCheck = async (ctx, next) => {
   const {
     session: { username }
   } = ctx
+  console.log(ctx.session)
   if (username) {
     await next()
     return

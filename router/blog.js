@@ -13,7 +13,15 @@ router.prefix("/blog")
 router.get("/list", async (ctx, next) => {
   const { keyword, author } = ctx.query
   const res = await getList(author, keyword)
-  ctx.body = new SuccessModel(res || [])
+  ctx.body = new SuccessModel({ list: res || [] })
+})
+
+router.get("/recommend", async (ctx, next) => {
+  const { keyword, author } = ctx.query
+  const res = await getList(author, keyword)
+  ctx.body = new SuccessModel({
+    recommendList: res.filter(item => item.recommend) || []
+  })
 })
 
 router.get("/detail/:id", async (ctx, next) => {

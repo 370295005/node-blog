@@ -71,6 +71,8 @@ sudo service docker start // 启动docker
 /user/login POST
 注册
 /user/register POST
+获取用户信息
+/user/userinfo?nickname=&id= GET
 上传头图
 /upload POST
 新建文章
@@ -79,3 +81,8 @@ sudo service docker start // 启动docker
 /edit POST
 ```
 
+### 服务器响应头set-cookie不生效的问题
+
+```
+axios配置withCredentials:true 且 cors配置origin为对应的域名
+```

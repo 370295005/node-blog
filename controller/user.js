@@ -13,21 +13,38 @@ const login = async (username, password) => {
   return result[0] || {}
 }
 
+const register = async (username, nickname, password) => {
+  // 密码加密
+  password = genPassword(password)
+  // 转义
+  username = escape(username)
+  password = escape(password)
+  nickname = escape(nickname)
+  const sql = `insert into users (username,password,nickname) values(${username},${password},${nickname});`
+  const result = await exec(sql)
+  return result.affectedRows > 0
+}
+
 const userInfo = async (id, nickname) => {
-  id = xss(id)
-  nickname = xss(nickname)
   let sql = `select id,nickname,description,avatar from users where 1=1 `
   if (id) {
-    sql += `and id=${id}`
+    id = escape(id)
+    sql += `and id=${id} `
   }
   if (nickname) {
-    sql += `and username=${nickname}`
+    nickname = escape(nickname)
+    sql += `and nickname=${nickname}`
   }
   const result = await exec(sql)
-  return result[0] || []
+  if (id || nickname) {
+    return result[0]
+  } else {
+    return {}
+  }
 }
 
 module.exports = {
   login,
-  userInfo
+  userInfo,
+  register
 }

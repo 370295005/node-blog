@@ -11,6 +11,7 @@ const { redisConfig } = require("./redis")
 const { accessWriteStream } = require("./utils/log")
 
 const env = process.env.NODE_ENV
+// cookie过期时间默认一天
 const cookieMaxAge = 24 * 60 * 60 * 1000
 const sessionStore = 1
 
@@ -19,7 +20,15 @@ const user = require("./router/user")
 const blog = require("./router/blog")
 
 // 中间件
-app.use(cors())
+app.use(
+  cors({
+    origin:
+      env === "development"
+        ? "http://localhost:3070"
+        : "https://www.nash141.cloud",
+    credentials: true
+  })
+)
 app.use(
   bodyParser({
     enableTypes: ["json", "form", "text"]
@@ -48,7 +57,7 @@ app.use(
   session({
     cookie: {
       path: "/",
-      httpOnly: true,
+      httpOnly: false,
       maxAge: cookieMaxAge,
       domain: env === "development" ? "localhost" : "nash141.cloud"
     },

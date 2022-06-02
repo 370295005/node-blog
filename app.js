@@ -1,5 +1,8 @@
 const Koa = require("koa")
 const app = new Koa()
+const path = require("path")
+const static = require("koa-static")
+const koaBody = require("koa-body")
 const cors = require("koa2-cors")
 const json = require("koa-json")
 const bodyParser = require("koa-bodyparser")
@@ -18,8 +21,11 @@ const sessionStore = 1
 // 路由
 const user = require("./router/user")
 const blog = require("./router/blog")
+const file = require("./router/file")
 
 // 中间件
+// 允许上传图片
+app.use(static(path.join(__dirname, "./public")))
 app.use(
   cors({
     origin:
@@ -68,5 +74,6 @@ app.use(
 // 注册路由
 app.use(user.routes()).use(user.allowedMethods())
 app.use(blog.routes()).use(blog.allowedMethods())
+app.use(file.routes()).use(file.allowedMethods())
 
 module.exports = app

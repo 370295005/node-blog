@@ -1,0 +1,28 @@
+2022-06-06 11:35:22: 
+2022-06-06 11:35:22:   Error: read ECONNRESET
+2022-06-06 11:35:22:       at TCP.onStreamRead (node:internal/stream_base_commons:217:20)
+2022-06-06 11:35:22:       --------------------
+2022-06-06 11:35:22:       at Protocol._enqueue (D:\nodejs\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+2022-06-06 11:35:22:       at Connection.query (D:\nodejs\node_modules\mysql\lib\Connection.js:198:25)
+2022-06-06 11:35:22:       at D:\nodejs\mysql\index.js:13:13
+2022-06-06 11:35:22:       at new Promise (<anonymous>)
+2022-06-06 11:35:22:       at exec (D:\nodejs\mysql\index.js:12:10)
+2022-06-06 11:35:22:       at newBlog (D:\nodejs\controller\blog.js:38:24)
+2022-06-06 11:35:22:       at D:\nodejs\router\blog.js:36:21
+2022-06-06 11:35:22:       at dispatch (D:\nodejs\node_modules\koa-compose\index.js:42:32)
+2022-06-06 11:35:22:       at loginCheck (D:\nodejs\middleware\index.js:9:11)
+2022-06-06 11:35:22:       at dispatch (D:\nodejs\node_modules\koa-compose\index.js:42:32)
+2022-06-06 11:35:22: 
+2022-06-06 11:36:19: 
+2022-06-06 11:36:19:   Error: Cannot enqueue Query after fatal error.
+2022-06-06 11:36:19:       at Protocol._validateEnqueue (D:\nodejs\node_modules\mysql\lib\protocol\Protocol.js:212:16)
+2022-06-06 11:36:19:       at Protocol._enqueue (D:\nodejs\node_modules\mysql\lib\protocol\Protocol.js:138:13)
+2022-06-06 11:36:19:       at Connection.query (D:\nodejs\node_modules\mysql\lib\Connection.js:198:25)
+2022-06-06 11:36:19:       at D:\nodejs\mysql\index.js:13:13
+2022-06-06 11:36:19:       at new Promise (<anonymous>)
+2022-06-06 11:36:19:       at exec (D:\nodejs\mysql\index.js:12:10)
+2022-06-06 11:36:19:       at newBlog (D:\nodejs\controller\blog.js:38:24)
+2022-06-06 11:36:19:       at D:\nodejs\router\blog.js:36:21
+2022-06-06 11:36:19:       at dispatch (D:\nodejs\node_modules\koa-compose\index.js:42:32)
+2022-06-06 11:36:19:       at loginCheck (D:\nodejs\middleware\index.js:9:11)
+2022-06-06 11:36:19: 

@@ -8,7 +8,7 @@ const login = async (username, password) => {
   // 转义
   username = escape(username)
   password = escape(password)
-  const sql = `select username,nickname from users where username=${username} and password=${password};`
+  const sql = `select username,nickname,id from users where username=${username} and password=${password};`
   const result = await exec(sql)
   return result[0] || {}
 }
@@ -43,8 +43,20 @@ const userInfo = async (id, nickname) => {
   }
 }
 
+const edit = async userInfo => {
+  let { nickname, description, avatar, username } = userInfo
+  nickname = escape(xss(nickname))
+  description = escape(xss(description))
+  avatar = escape(avatar)
+  username = escape(username)
+  const sql = `update users set nickname=${nickname},description=${description},avatar=${avatar} where username=${username}`
+  const result = await exec(sql)
+  return result.affectedRows > 0
+}
+
 module.exports = {
   login,
   userInfo,
-  register
+  register,
+  edit
 }

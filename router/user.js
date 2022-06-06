@@ -1,5 +1,5 @@
 const router = require("koa-router")()
-const { login, userInfo, register } = require("../controller/user")
+const { login, userInfo, register, edit } = require("../controller/user")
 const { SuccessModel, ErrorModel } = require("../model/resModel")
 const { loginCheck } = require("../middleware")
 router.prefix("/user")
@@ -10,7 +10,11 @@ router.post("/login", async (ctx, next) => {
   if (res?.username) {
     ctx.session.username = res.username
     ctx.session.nickname = res.nickname
-    ctx.body = new SuccessModel({ username: res.username }, "登录成功")
+    ctx.session.id = res.id
+    ctx.body = new SuccessModel(
+      { username: res.username, id: res.id, nickname: res.nickname },
+      "登录成功"
+    )
   } else {
     ctx.body = new ErrorModel()
   }
@@ -31,6 +35,18 @@ router.get("/userinfo", async (ctx, next) => {
     ctx.body = new SuccessModel(res)
   } else {
     ctx.body = new ErrorModel("网络错误")
+  }
+})
+
+// 修改信息
+router.post("/edit", loginCheck, async (ctx, next) => {
+  const username = ctx.session.username
+  ctx.request.body.username = username
+  const res = await edit(ctx.request.body)
+  if (res) {
+    ctx.body = new SuccessModel('更新成功')
+  } else {
+    ctx.body = new ErrorModel("更新失败")
   }
 })
 module.exports = router

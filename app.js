@@ -65,7 +65,9 @@ app.use(
       path: "/",
       httpOnly: false,
       maxAge: cookieMaxAge,
-      domain: env === "development" ? "localhost" : "nash141.cloud"
+      domain: env === "development" ? "localhost" : "nash141.cloud",
+      secure: false,
+      sameSite: "none"
     },
     store: redisStore(redisConfig)
   })

@@ -13,7 +13,7 @@ const MYSQL_CONFIG = {
   password: PASSWORD
 }
 
-if (env !== "prodction") {
+if (env !== "production") {
   MYSQL_CONFIG.database = TEST_DATABASE
 } else {
   MYSQL_CONFIG.host = LOCAL_HOST

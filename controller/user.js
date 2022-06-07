@@ -8,7 +8,7 @@ const login = async (username, password) => {
   // 转义
   username = escape(username)
   password = escape(password)
-  const sql = `select username,nickname,id from users where username=${username} and password=${password};`
+  const sql = `select username,nickname,userId from users where username=${username} and password=${password};`
   const result = await exec(sql)
   return result[0] || {}
 }
@@ -25,18 +25,19 @@ const register = async (username, nickname, password) => {
   return result.affectedRows > 0
 }
 
-const userInfo = async (id, nickname) => {
-  let sql = `select id,nickname,description,avatar from users where 1=1 `
-  if (id) {
-    id = escape(id)
-    sql += `and id=${id} `
+const userInfo = async (userId, nickname) => {
+  let sql = `select userId,nickname,description,avatar from users where 1=1 `
+  if (userId) {
+    userId = escape(userId)
+    sql += `and userId=${userId} `
   }
   if (nickname) {
     nickname = escape(nickname)
     sql += `and nickname=${nickname}`
   }
+  console.log(sql)
   const result = await exec(sql)
-  if (id || nickname) {
+  if (userId || nickname) {
     return result[0]
   } else {
     return {}
@@ -44,12 +45,13 @@ const userInfo = async (id, nickname) => {
 }
 
 const edit = async userInfo => {
-  let { nickname, description, avatar, username } = userInfo
+  let { nickname, description, avatar, userId } = userInfo
   nickname = escape(xss(nickname))
   description = escape(xss(description))
   avatar = escape(avatar)
-  username = escape(username)
-  const sql = `update users set nickname=${nickname},description=${description},avatar=${avatar} where username=${username}`
+  userId = escape(userId)
+  const sql = `update users set nickname=${nickname},description=${description},avatar=${avatar} where userId=${userId}`
+  console.log(sql)
   const result = await exec(sql)
   return result.affectedRows > 0
 }

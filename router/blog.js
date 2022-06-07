@@ -11,8 +11,8 @@ const { SuccessModel, ErrorModel } = require("../model/resModel")
 router.prefix("/blog")
 
 router.get("/list", async (ctx, next) => {
-  const { keyword, author, authorId } = ctx.query
-  const res = await getList(author, keyword, authorId)
+  const { keyword, author, userId } = ctx.query
+  const res = await getList(author, keyword, userId)
   ctx.body = new SuccessModel({ list: res || [] })
 })
 
@@ -32,7 +32,7 @@ router.get("/detail/:id", async (ctx, next) => {
 
 router.post("/new", loginCheck, async (ctx, next) => {
   const body = ctx.request.body
-  body.author = ctx.session.nickname
+  body.userId = ctx.session.userId
   const res = await newBlog(body)
   ctx.body = new SuccessModel(res, "发布成功")
 })
@@ -49,9 +49,9 @@ router.post("/update", loginCheck, async (ctx, next) => {
 })
 
 router.post("/delete", loginCheck, async (ctx, next) => {
-  const author = ctx.session.username
+  const userId = ctx.session.userId
   const { id } = ctx.query
-  const res = await deleteBlog(id, author)
+  const res = await deleteBlog(id, userId)
   if (res) ctx.body = new SuccessModel()
   else ctx.body = new ErrorModel()
 })

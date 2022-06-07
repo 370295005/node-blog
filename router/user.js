@@ -10,9 +10,9 @@ router.post("/login", async (ctx, next) => {
   if (res?.username) {
     ctx.session.username = res.username
     ctx.session.nickname = res.nickname
-    ctx.session.id = res.id
+    ctx.session.userId = res.userId
     ctx.body = new SuccessModel(
-      { username: res.username, id: res.id, nickname: res.nickname },
+      { username: res.username, userId: res.userId, nickname: res.nickname },
       "登录成功"
     )
   } else {
@@ -29,8 +29,8 @@ router.post("/register", async (ctx, next) => {
 
 // 获取用户信息
 router.get("/userinfo", async (ctx, next) => {
-  const { nickname, id } = ctx.request.query
-  const res = await userInfo(id, nickname)
+  const { nickname, userId } = ctx.request.query
+  const res = await userInfo(userId, nickname)
   if (res) {
     ctx.body = new SuccessModel(res)
   } else {
@@ -40,11 +40,11 @@ router.get("/userinfo", async (ctx, next) => {
 
 // 修改信息
 router.post("/edit", loginCheck, async (ctx, next) => {
-  const username = ctx.session.username
-  ctx.request.body.username = username
+  const { userId } = ctx.session
+  ctx.request.body.userId = userId
   const res = await edit(ctx.request.body)
   if (res) {
-    ctx.body = new SuccessModel('更新成功')
+    ctx.body = new SuccessModel("更新成功")
   } else {
     ctx.body = new ErrorModel("更新失败")
   }
